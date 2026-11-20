@@ -1,0 +1,54 @@
+name: Update Profile Cards
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/update-profile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  render-cards:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      - name: Run Test Suite
+        run: |
+          python scripts/test_render_cards.py
+
+      - name: Render Profile Cards
+        run: |
+          python scripts/render_cards.py --user Priyanshu03s
+
+      - name: Commit and Push Updated Cards
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add cards/
+          if git diff --staged --quiet; then
+            echo "No changes in SVG cards. Skipping commit."
+          else
+            git commit -m "chore(profile): refresh dynamic svg cards [skip ci]"
+            git push
+          fi

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="100%" height="240">
+  <defs>
+    <linearGradient id="hero-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" />
+      <stop offset="50%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#00F0FF" />
+    </linearGradient>
+    <linearGradient id="hero-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B14" />
+      <stop offset="50%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#0E1626" />
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="cyan-glow" cx="20%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#00F0FF" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1F293D" stroke-width="0.5" stroke-opacity="0.5" />
+    </pattern>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 32px; fill: #FFFFFF; letter-spacing: 1px; }
+      .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 13px; fill: #00F0FF; letter-spacing: 1.5px; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; fill: #94A3B8; font-weight: 400; }
+      .meta { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #CBD5E1; font-weight: 500; }
+      .pulse-dot { animation: pulse 2s infinite ease-in-out; }
+      @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.85); } }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="240" rx="16" fill="url(#hero-bg)" />
+  <rect width="900" height="240" rx="16" fill="url(#grid)" />
+  <rect width="900" height="240" rx="16" fill="url(#glow)" />
+  <rect width="900" height="240" rx="16" fill="url(#cyan-glow)" />
+
+  <!-- Outer Border -->
+  <rect x="1" y="1" width="898" height="238" rx="15" fill="none" stroke="url(#hero-border)" stroke-width="1.5" stroke-opacity="0.8" />
+
+  <!-- Status Chip -->
+  <g transform="translate(40, 36)">
+    <rect width="185" height="28" rx="14" fill="#0E1E38" stroke="#00F0FF" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="16" cy="14" r="5" fill="#10B981" class="pulse-dot" />
+    <text x="30" y="18" class="badge-text" fill="#00F0FF" style="font-size: 11px;">SYSTEM: ACTIVE &amp; BUILDING</text>
+  </g>
+
+  <!-- Title & Headline -->
+  <text x="40" y="104" class="title">PRIYANSHU THAKUR</text>
+  <text x="375" y="104" class="badge-text" fill="#8B5CF6" style="font-size: 14px;">// AI ENGINEER</text>
+
+  <!-- Subtitle -->
+  <text x="40" y="142" class="subtitle">Architecting RAG Systems • Enterprise Spring Boot • Scalable Full-Stack Architectures</text>
+
+  <!-- Location & Focus Badges -->
+  <g transform="translate(40, 175)">
+    <!-- Location Pill -->
+    <rect width="165" height="30" rx="8" fill="#151D2E" stroke="#334155" stroke-width="1" />
+    <text x="14" y="20" class="meta">📍 Delhi NCR, India</text>
+
+    <!-- Focus Pill -->
+    <rect x="180" width="220" height="30" rx="8" fill="#151D2E" stroke="#334155" stroke-width="1" />
+    <text x="194" y="20" class="meta">⚡ LLMs, Agents &amp; Cloud Systems</text>
+
+    <!-- Status Pill -->
+    <rect x="415" width="235" height="30" rx="8" fill="#151D2E" stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.5" />
+    <text x="429" y="20" class="meta" fill="#A78BFA">🚀 Open to High-Impact Roles</text>
+  </g>
+</svg>
