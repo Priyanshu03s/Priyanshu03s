@@ -14,7 +14,7 @@
 
 <!-- Featured Spotlight Cards -->
 <h3>⚡ FEATURED DOMAINS &amp; ARCHITECTURES</h3>
-<a href="https://github.com/Priyanshu03s"><img src="./cards/spotlight/card-rag.svg" width="32.5%" alt="RAG &amp; AI Systems" /></a>&nbsp;<a href="https://github.com/Priyanshu03s"><img src="./cards/spotlight/card-enterprise.svg" width="32.5%" alt="Spring Boot Enterprise Systems" /></a>&nbsp;<a href="https://github.com/Priyanshu03s/3D-Portfolio"><img src="./cards/spotlight/card-3d.svg" width="32.5%" alt="3D Portfolio &amp; Interactive Web" /></a>
+<a href="https://github.com/Priyanshu03s/EmployeeCommunicationSystem"><img src="./cards/spotlight/card-enterprise.svg" width="32.5%" alt="Spring Boot Enterprise Systems" /></a>&nbsp;<a href="https://github.com/Priyanshu03s/CONSTRUCTION-LIBRARY"><img src="./cards/spotlight/card-rag.svg" width="32.5%" alt="Construction &amp; Garment Knowledge Library" /></a>&nbsp;<a href="https://github.com/Priyanshu03s/3D-Portfolio"><img src="./cards/spotlight/card-3d.svg" width="32.5%" alt="3D Portfolio &amp; Interactive Web" /></a>
 
 <br><br>
 
