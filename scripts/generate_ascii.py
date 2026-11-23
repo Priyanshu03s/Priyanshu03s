@@ -2,37 +2,15 @@ import cv2
 import numpy as np
 
 def make_ascii_art():
-    img_bgr = cv2.imread("avatar.png")
-    h, w = img_bgr.shape[:2]
-    
-    # GrabCut to isolate foreground
-    mask = np.zeros((h, w), np.uint8)
-    bgdModel = np.zeros((1, 65), np.float64)
-    fgdModel = np.zeros((1, 65), np.float64)
-    # bounding box around person (center 75% width, 92% height)
-    rect = (int(w * 0.10), int(h * 0.04), int(w * 0.80), int(h * 0.92))
-    cv2.grabCut(img_bgr, mask, rect, bgdModel, fgdModel, 5, cv2.GC_INIT_WITH_RECT)
-    fg_mask = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
-    
-    # Clean up mask with morphology
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    fg_mask = cv2.morphologyEx(fg_mask, cv2.MORPH_CLOSE, kernel)
-    
-    # Grayscale image
+    img_bgr = cv2.imread("dp_avatar.png")
     gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
-    # Apply CLAHE for rich local contrast (eyes, hair, beard)
-    clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
-    contrast_gray = clahe.apply(gray)
-    
-    # Mask out background to pure white (255)
-    processed = np.where(fg_mask == 1, contrast_gray, 255)
     
     # Target ASCII dimensions: 180 cols, 96 rows
     target_w, target_h = 180, 96
-    resized = cv2.resize(processed, (target_w, target_h), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(gray, (target_w, target_h), interpolation=cv2.INTER_AREA)
     
-    # Edge boost to emphasize outline of face, hair, and features
-    edges = cv2.Canny(resized, 50, 140)
+    # Edges to crisp outlines
+    edges = cv2.Canny(resized, 40, 120)
     
     ramp = " .:-=+*c#%@"
     lines = []
@@ -41,12 +19,12 @@ def make_ascii_art():
         for c in range(target_w):
             val = int(resized[r, c])
             is_edge = edges[r, c] > 0
-            if val > 225:
+            if val > 228:
                 line_chars.append(" ")
             else:
                 if is_edge and val < 200:
-                    val = max(0, val - 35)
-                idx = int((225 - val) / 225 * (len(ramp) - 1))
+                    val = max(0, val - 30)
+                idx = int((228 - val) / 228 * (len(ramp) - 1))
                 idx = max(0, min(len(ramp) - 1, idx))
                 line_chars.append(ramp[idx])
         lines.append("".join(line_chars))
