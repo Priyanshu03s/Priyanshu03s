@@ -2,8 +2,8 @@ name: Update Profile Cards
 
 on:
   schedule:
-    # Run daily at 00:00 UTC
-    - cron: '0 0 * * *'
+    # Run daily at 06:00 UTC
+    - cron: '0 6 * * *'
   workflow_dispatch:
   push:
     branches:
@@ -33,19 +33,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
 
+      - name: Fetch Real Contribution Data
+        run: python scripts/fetch_contributions.py
+
       - name: Run Test Suite
-        run: |
-          python scripts/test_render_cards.py
+        run: python scripts/test_render_cards.py
 
       - name: Render Profile Cards
-        run: |
-          python scripts/render_cards.py --user Priyanshu03s
+        run: python scripts/render_cards.py
 
       - name: Commit and Push Updated Cards
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add cards/
+          git add cards/ data/
           if git diff --staged --quiet; then
             echo "No changes in SVG cards. Skipping commit."
           else

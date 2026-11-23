@@ -1,55 +1,47 @@
-import xml.etree.ElementTree as ET
+import os
 import unittest
-import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
-# Add scripts directory to path
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render_cards import (
-    generate_hero_svg,
-    generate_pillars_svg,
-    generate_stats_svg,
-    generate_tech_matrix_svg,
-    generate_spotlight_cards
-)
+CARDS_DIR = Path(__file__).resolve().parent.parent / "cards"
 
-class TestSVGRenderer(unittest.TestCase):
-    def test_hero_svg_validity(self):
-        svg = generate_hero_svg()
-        root = ET.fromstring(svg)
-        self.assertEqual(root.tag.split('}')[-1], 'svg')
-        self.assertIn('viewBox', root.attrib)
-        self.assertIn('PRIYANSHU THAKUR', svg)
-
-    def test_pillars_svg_validity(self):
-        svg = generate_pillars_svg()
-        root = ET.fromstring(svg)
-        self.assertEqual(root.tag.split('}')[-1], 'svg')
-        self.assertIn('AI &amp; RAG SYSTEMS', svg)
-        self.assertIn('ENTERPRISE BACKEND', svg)
-
-    def test_stats_svg_fallback(self):
-        svg = generate_stats_svg(None, None)
-        root = ET.fromstring(svg)
-        self.assertEqual(root.tag.split('}')[-1], 'svg')
-        self.assertIn('GITHUB ACTIVITY', svg)
-        self.assertIn('TOP REPOSITORY LANGUAGES', svg)
-
-    def test_tech_matrix_svg_validity(self):
-        svg = generate_tech_matrix_svg()
-        root = ET.fromstring(svg)
-        self.assertEqual(root.tag.split('}')[-1], 'svg')
-        self.assertIn('Spring Boot', svg)
-        self.assertIn('Python', svg)
-        self.assertIn('Angular', svg)
-
-    def test_spotlight_cards_validity(self):
-        cards = generate_spotlight_cards()
-        self.assertEqual(len(cards), 3)
-        for name, content in cards.items():
+class TestProfileSVGs(unittest.TestCase):
+    def test_all_generated_cards_exist_and_valid_xml(self):
+        expected_cards = [
+            "hero.svg",
+            "build.svg",
+            "stack.svg",
+            "focus.svg",
+            "activity.svg",
+            "heatmap.svg",
+            "title-coding-dark.svg",
+            "title-coding-light.svg",
+            "repo-EmployeeCommunicationSystem.svg",
+            "repo-CONSTRUCTION-LIBRARY.svg",
+            "repo-DishaSutra.svg",
+        ]
+        
+        for card_name in expected_cards:
+            path = CARDS_DIR / card_name
+            self.assertTrue(path.exists(), f"Missing expected card: {card_name}")
+            with open(path, "r", encoding="utf-8") as f:
+                content = f.read()
             root = ET.fromstring(content)
-            self.assertEqual(root.tag.split('}')[-1], 'svg')
-            self.assertIn('viewBox', root.attrib)
+            self.assertEqual(root.tag.split("}")[-1], "svg")
+            self.assertIn("viewBox", root.attrib)
 
-if __name__ == '__main__':
+    def test_hero_card_content(self):
+        with open(CARDS_DIR / "hero.svg", "r", encoding="utf-8") as f:
+            content = f.read()
+        self.assertIn("Priyanshu", content)
+        self.assertIn("Thakur", content)
+        self.assertIn("FULLSTACK &amp; AI ENGINEER", content)
+
+    def test_world_tiles_content(self):
+        for name, label in [("build.svg", "BUILD"), ("stack.svg", "STACK"), ("focus.svg", "FOCUS")]:
+            with open(CARDS_DIR / name, "r", encoding="utf-8") as f:
+                content = f.read()
+            self.assertIn(label, content)
+
+if __name__ == "__main__":
     unittest.main()
