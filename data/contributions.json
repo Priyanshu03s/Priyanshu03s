@@ -1,25 +1,25 @@
 {
   "username": "Priyanshu03s",
-  "generated_at": "2026-11-26T16:08:48Z",
+  "generated_at": "2026-11-27T15:55:33Z",
   "range": {
-    "start": "2025-11-27",
-    "end": "2026-11-26"
+    "start": "2025-11-28",
+    "end": "2026-11-27"
   },
   "total_contributions": 15,
   "active_days": 15,
   "avg_per_active_day": 1.0,
   "current_streak": {
     "length": 15,
-    "start": "2026-11-12",
-    "end": "2026-11-26"
+    "start": "2026-11-13",
+    "end": "2026-11-27"
   },
   "longest_streak": {
     "length": 15,
-    "start": "2026-11-12",
-    "end": "2026-11-26"
+    "start": "2026-11-13",
+    "end": "2026-11-27"
   },
   "best_day": {
-    "date": "2026-11-12",
+    "date": "2026-11-13",
     "count": 1
   },
   "monthly": [
@@ -77,11 +77,6 @@
     }
   ],
   "days": [
-    {
-      "date": "2025-11-27",
-      "count": 0,
-      "level": 0
-    },
     {
       "date": "2025-11-28",
       "count": 0,
@@ -1829,8 +1824,8 @@
     },
     {
       "date": "2026-11-12",
-      "count": 1,
-      "level": 1
+      "count": 0,
+      "level": 0
     },
     {
       "date": "2026-11-13",
@@ -1899,6 +1894,11 @@
     },
     {
       "date": "2026-11-26",
+      "count": 1,
+      "level": 1
+    },
+    {
+      "date": "2026-11-27",
       "count": 1,
       "level": 1
     }
